@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features | ClassSys</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff; /* Light background for a school feel */
+      margin: 0;
+      padding: 0;
+      color: black; /* Default text color */
+    }
+
+    header {
+      background-color: #007bff; /* School blue */
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #0056b3; /* Darker blue on hover */
+    }
+
+    .container {
+      margin: 2rem auto;
+      max-width: 1200px; /* Centered and limited width */
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #007bff;
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: #f9f9f9;
+      border: 2px solid #007bff; /* Blue border for cards */
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #f0f8ff; /* Light background for footer */
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <h1>Class System</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="admin.html">Admin</a>
+        <a href="teacher.html">Teacher</a>
+        <a href="student.html">Student</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Features</h2>
+    <section class="grid">
+      <div class="card">
+        <i class="fas fa-user-shield fa-2x" aria-hidden="true"></i>
+        <h3>Role-Based Access</h3>
+        <p>Admins, teachers, and students have tailored dashboards and permissions.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-calendar-check fa-2x" aria-hidden="true"></i>
+        <h3>Attendance Management</h3>
+        <p>Track and update attendance with ease using date pickers and lists.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-book-open fa-2x" aria-hidden="true"></i>
+        <h3>Notes & Materials Upload</h3>
+        <p>Teachers can upload resources; students can download securely.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-tasks fa-2x" aria-hidden="true"></i>
+        <h3>Assignment Handling</h3>
+        <p>Create, submit, and grade assignments with deadlines and attachments.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bell fa-2x" aria-hidden="true"></i>
+        <h3>Notifications & Announcements</h3>
+        <p>Stay updated with system-wide alerts and announcements.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-clock fa-2x" aria-hidden="true"></i>
+        <h3>Interactive Timetables</h3>
+        <p>Responsive, touch-friendly schedule views adapted for all devices.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Class System. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

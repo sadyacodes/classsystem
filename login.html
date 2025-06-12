@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Class Management System</title>
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <!-- Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #222;
+    }
+
+    /* Header with logo and title */
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      object-fit: cover;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Login box styling */
+    .login-box {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Heading inside login box */
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    /* Form styles */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    input {
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0,123,255,0.2);
+      outline: none;
+    }
+
+    /* Style for the link button */
+    .btn {
+      display: inline-block;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* "No account? Sign Up" message */
+    .signup-message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+
+    .signup-message a {
+      color: #007bff;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .signup-message a:hover {
+      color: #0056b3;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 500px) {
+      .login-box {
+        padding: 20px;
+      }
+      .title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo and Title -->
+  <div class="header">
+    <!-- Replace the src with your logo image URL -->
+    <img src="https://img.icons8.com/ios/100/000000/class.png" alt="Class Management Logo" class="logo" />
+    <div class="title">Class Management System</div>
+  </div>
+
+  <!-- Login Box -->
+  <div class="login-box">
+    <h2>Login to your account</h2>
+    <!-- Change the form's action to point to features.html -->
+    <form id="loginForm" action="features.html" method="POST">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+      <!-- Replace the button with styled link -->
+      <a href="features.html" class="btn">Login</a>
+    </form>
+
+    <!-- Sign Up message -->
+    <div class="signup-message">
+      <span>No account? </span>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </div>
+
+</body>
+</html>

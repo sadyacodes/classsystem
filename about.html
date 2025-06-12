@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | ClassSys</title>
+  <!-- Google Fonts for a professional look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root {
+      --primary-color: #003e84;
+      --secondary-color: #6C757D;
+      --background-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.05) 0px 4px 6px;
+      --text-body: #343a40;
+      --font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      margin: 0;
+      line-height: 1.6;
+      color: var(--text-body);
+    }
+
+    /* Header styles */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar h1 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-weight: 500;
+      transition: color 0.3s, transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Main content styles */
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    /* Card styles */
+    section {
+      background: var(--card-bg);
+      box-shadow: var(--card-shadow);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      line-height: 1.6;
+      color: var(--text-body);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    section:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-top: 1rem;
+      list-style-type: disc;
+    }
+
+    /* Additional info styles */
+    .additional-info {
+      margin-top: 2rem;
+    }
+
+    .additional-info h3 {
+      margin-top: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #fff;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      margin-top: 3rem;
+    }
+
+    /* Responsive typography */
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.75rem;
+      }
+      .navbar h1 {
+        font-size: 1.25rem;
+      }
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <h1>Class System</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" style="margin-top: 3rem;">
+    <h2>About Class System</h2>
+
+    <section>
+      <p>
+        Class System is a cutting-edge Class Management System crafted to streamline educational administration and enhance the learning experience. Utilizing modern web technologies, it prioritizes accessibility, security, and responsiveness across all devices.
+      </p>
+      <ul>
+        <li><strong>Admins:</strong> Oversee users, subjects, classes, and analyze key statistics to optimize institution management.</li>
+        <li><strong>Teachers:</strong> Manage attendance, upload resources, assign tasks, and evaluate student progress efficiently.</li>
+        <li><strong>Students:</strong> Access educational resources, submit assignments, track attendance, and view personalized schedules.</li>
+      </ul>
+      <div class="additional-info">
+        <h3>Future Enhancements & Technologies</h3>
+        <p>
+          We are committed to continuous improvement. Planned features include real-time notifications, integrated video conferencing, AI-powered analytics, and seamless integration with existing school management systems. Built with HTML5, CSS3, and JavaScript, the platform is designed to be scalable and adaptable for future backend integrations.
+        </p>
+        <h3>Our Mission</h3>
+        <p>
+          To create an intuitive, secure, and scalable platform that fosters collaboration among students, teachers, and administrators, ultimately transforming the educational landscape.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Class System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

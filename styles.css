@@ -1,0 +1,125 @@
+/* styles.css */
+
+:root {
+  --primary-color: #1f2937;
+  --secondary-color: #6b7280;
+  --accent-color: #2563eb;
+  --bg-light: #ffffff;
+  --bg-dark: #111827;
+  --border-radius: 0.75rem;
+  --max-width: 1200px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--secondary-color);
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-dark);
+  color: #d1d5db;
+}
+
+header {
+  background: var(--bg-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav-links a {
+  margin-left: 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: var(--accent-color);
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f3f4f6;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #1d4ed8;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #f9fafb;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+footer a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

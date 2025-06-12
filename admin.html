@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard | ClassSys</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff; /* Light background for a school feel */
+      margin: 0;
+      padding: 0;
+      color: black; /* Default text color */
+    }
+
+    header {
+      background-color: #007bff; /* School blue */
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    .container {
+      margin: 2rem auto;
+      max-width: 1200px; /* Wider layout */
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background-color: #f9f9f9;
+      border: 2px solid #007bff; /* Blue border for cards */
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .action-button:hover {
+      background-color: #0056b3;
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%; /* Responsive width */
+      max-width: 500px; /* Max width */
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .close-modal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+      color: black;
+      text-decoration: none;
+      outline: none;
+    }
+
+    form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    form input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 0.3rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #f0f8ff; /* Light background for footer */
+      color: black;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Admin main navigation">
+      <h1>Class System</h1>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Admin Dashboard</h2>
+
+    <section class="grid" aria-label="Statistics overview">
+      <div class="card hover-card" tabindex="0" aria-label="Total Students">
+        <i class="fas fa-user-graduate fa-3x" aria-hidden="true"></i>
+        <h3>Total Students</h3>
+        <p id="totalStudents">0</p>
+      </div>
+
+      <div class="card hover-card" tabindex="0" aria-label="Total Teachers">
+        <i class="fas fa-chalkboard-teacher fa-3x" aria-hidden="true"></i>
+        <h3>Total Teachers</h3>
+        <p id="totalTeachers">0</p>
+      </div>
+
+      <div class="card hover-card" tabindex="0" aria-label="Total Subjects">
+        <i class="fas fa-book fa-3x" aria-hidden="true"></i>
+        <h3>Total Subjects</h3>
+        <p id="totalSubjects">0</p>
+      </div>
+
+      <div class="card hover-card" tabindex="0" aria-label="Total Classes">
+        <i class="fas fa-school fa-3x" aria-hidden="true"></i>
+        <h3>Total Classes</h3>
+        <p id="totalClasses">0</p>
+      </div>
+    </section>
+
+    <section aria-label="Manage Records" style="margin-top: 3rem;">
+      <h3>Manage Records</h3>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+        <button class="action-button" id="addStudentBtn">Add Student</button>
+        <button class="action-button" id="addTeacherBtn">Add Teacher</button>
+        <button class="action-button" id="addSubjectBtn">Add Subject</button>
+        <button class="action-button" id="addClassBtn">Add Class</button>
+      </div>
+    </section>
+
+    <!-- Records display -->
+    <section style="margin-top: 3rem;">
+      <h3>Current Records</h3>
+      <div id="recordsDisplay" style="margin-top:1rem; max-height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 1rem; background:#f9f9f9;">
+        <p>No records to display.</p>
+      </div>
+    </section>
+
+    <!-- Modal Container -->
+    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <div class="modal-content" role="document">
+        <button class="close-modal" aria-label="Close modal">&times;</button>
+        <h3 id="modalTitle">Modal Title</h3>
+        <form id="modalForm">
+          <!-- Dynamic form inputs inserted here -->
+        </form>
+        <div style="margin-top: 1rem; text-align:right;">
+          <button type="submit" form="modalForm" class="cta-button">Save</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Class System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (() => {
+      // Data stores for each type
+      const students = [];
+      const teachers = [];
+      const subjects = [];
+      const classes = [];
+
+      const totalStudentsElem = document.getElementById('totalStudents');
+      const totalTeachersElem = document.getElementById('totalTeachers');
+      const totalSubjectsElem = document.getElementById('totalSubjects');
+      const totalClassesElem = document.getElementById('totalClasses');
+      const recordsDisplay = document.getElementById('recordsDisplay');
+      const modal = document.getElementById('modal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalForm = document.getElementById('modalForm');
+      const closeModalBtn = document.querySelector('.close-modal');
+
+      function updateDashboard() {
+        totalStudentsElem.textContent = students.length;
+        totalTeachersElem.textContent = teachers.length;
+        totalSubjectsElem.textContent = subjects.length;
+        totalClassesElem.textContent = classes.length;
+
+        displayRecords(); // Refresh the records listing when dashboard updates
+      }
+
+      function displayRecords() {
+        if (
+          students.length === 0 &&
+          teachers.length === 0 &&
+          subjects.length === 0 &&
+          classes.length === 0
+        ) {
+          recordsDisplay.innerHTML = '<p>No records to display.</p>';
+          return;
+        }
+
+        let html = '';
+
+        if (students.length > 0) {
+          html += '<h4>Students</h4><ul>';
+          students.forEach((stu, index) => {
+            html += `<li><strong>${stu.name}</strong>, Age: ${stu.age}, Email: ${stu.email}, Class: ${stu.className} <button data-type="student" data-index="${index}" class="delete-btn">Delete</button></li>`;
+          });
+          html += '</ul>';
+        }
+
+        if (teachers.length > 0) {
+          html += '<h4>Teachers</h4><ul>';
+          teachers.forEach((tea, index) => {
+            html += `<li><strong>${tea.name}</strong>, Subject: ${tea.subject} <button data-type="teacher" data-index="${index}" class="delete-btn">Delete</button></li>`;
+          });
+          html += '</ul>';
+        }
+
+        if (subjects.length > 0) {
+          html += '<h4>Subjects</h4><ul>';
+          subjects.forEach((subj, index) => {
+            html += `<li><strong>${subj.name}</strong> <button data-type="subject" data-index="${index}" class="delete-btn">Delete</button></li>`;
+          });
+          html += '</ul>';
+        }
+
+        if (classes.length > 0) {
+          html += '<h4>Classes</h4><ul>';
+          classes.forEach((cls, index) => {
+            html += `<li><strong>${cls.name}</strong> <button data-type="class" data-index="${index}" class="delete-btn">Delete</button></li>`;
+          });
+          html += '</ul>';
+        }
+
+        recordsDisplay.innerHTML = html;
+
+        // Add delete event listeners
+        const deleteButtons = recordsDisplay.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const type = button.getAttribute('data-type');
+            const idx = parseInt(button.getAttribute('data-index'), 10);
+            deleteRecord(type, idx);
+          });
+        });
+      }
+
+      function deleteRecord(type, index) {
+        switch(type) {
+          case 'student':
+            students.splice(index, 1);
+            break;
+          case 'teacher':
+            teachers.splice(index, 1);
+            break;
+          case 'subject':
+            subjects.splice(index, 1);
+            break;
+          case 'class':
+            classes.splice(index, 1);
+            break;
+        }
+        updateDashboard();
+      }
+
+      function openModal(title, formHtml) {
+        modalTitle.textContent = title;
+        modalForm.innerHTML = formHtml;
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        modal.focus();
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        modalForm.reset();
+      }
+
+      // Button event bindings
+      document.getElementById('addStudentBtn').addEventListener('click', () => {
+        openModal('Add Student', `
+          <label for="studentName">Student Name:</label>
+          <input type="text" id="studentName" name="studentName" required />
+          <label for="studentAge">Age:</label>
+          <input type="number" id="studentAge" name="studentAge" min="1" required />
+          <label for="studentEmail">Email:</label>
+          <input type="email" id="studentEmail" name="studentEmail" required />
+          <label for="studentClass">Class:</label>
+          <input type="text" id="studentClass" name="studentClass" required />
+        `);
+      });
+
+      document.getElementById('addTeacherBtn').addEventListener('click', () => {
+        openModal('Add Teacher', `
+          <label for="teacherName">Teacher Name:</label>
+          <input type="text" id="teacherName" name="teacherName" required />
+          <label for="teacherSubject">Subject:</label>
+          <input type="text" id="teacherSubject" name="teacherSubject" required />
+        `);
+      });
+
+      document.getElementById('addSubjectBtn').addEventListener('click', () => {
+        openModal('Add Subject', `
+          <label for="subjectName">Subject Name:</label>
+          <input type="text" id="subjectName" name="subjectName" required />
+        `);
+      });
+
+      document.getElementById('addClassBtn').addEventListener('click', () => {
+        openModal('Add Class', `
+          <label for="className">Class Name:</label>
+          <input type="text" id="className" name="className" required />
+        `);
+      });
+
+      // Modal form submit event
+      modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = modalTitle.textContent;
+
+        if (title === 'Add Student') {
+          const name = modalForm.studentName.value.trim();
+          const age = modalForm.studentAge.value.trim();
+          const email = modalForm.studentEmail.value.trim();
+          const className = modalForm.studentClass.value.trim();
+
+          if (name && age && email && className) {
+            students.push({ name, age, email, className });
+            alert(`Student added: ${name}`);
+          } else {
+            alert('Please fill out all student fields.');
+            return;
+          }
+
+        } else if (title === 'Add Teacher') {
+          const name = modalForm.teacherName.value.trim();
+          const subject = modalForm.teacherSubject.value.trim();
+
+          if (name && subject) {
+            teachers.push({ name, subject });
+            alert(`Teacher added: ${name}`);
+          } else {
+            alert('Please fill out all teacher fields.');
+            return;
+          }
+
+        } else if (title === 'Add Subject') {
+          const name = modalForm.subjectName.value.trim();
+
+          if (name) {
+            subjects.push({ name });
+            alert(`Subject added: ${name}`);
+          } else {
+            alert('Please enter a subject name.');
+            return;
+          }
+
+        } else if (title === 'Add Class') {
+          const name = modalForm.className.value.trim();
+
+          if (name) {
+            classes.push({ name });
+            alert(`Class added: ${name}`);
+          } else {
+            alert('Please enter a class name.');
+            return;
+          }
+        }
+
+        updateDashboard();
+        closeModal();
+      });
+
+      // Close modal button and overlay click
+      closeModalBtn.addEventListener('click', closeModal);
+      window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close modal on ESC press
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+          closeModal();
+        }
+      });
+
+      updateDashboard();
+    })();
+  </script>
+</body>
+</html>
+

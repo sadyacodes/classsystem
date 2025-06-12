@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | ClassSys</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: #ffffff;
+      color: #222;
+      padding: 0 1rem;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #007bff;
+      padding: 1rem 0;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem;
+    }
+
+    .navbar h1 {
+      font-size: 1.8rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+
+    /* Container styles */
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    /* Heading style */
+    h2 {
+      color: var(--primary-color, #007bff);
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    /* Form styles */
+    #contactForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Floating label styles */
+    .floating-label {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+    }
+
+    .floating-label input,
+    .floating-label textarea {
+      padding: 1rem 0.75rem 0.25rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+      background-color: transparent;
+      transition: border-color 0.3s;
+    }
+
+    .floating-label input:focus,
+    .floating-label textarea:focus {
+      border-color: #007bff;
+    }
+
+    /* Span label styles for floating effect */
+    .floating-label span {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: #fff;
+      padding: 0 0.25rem;
+      color: #555;
+      font-size: 0.9rem;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+
+    /* Floating effect when input has value or focus */
+    .floating-label input:focus + span,
+    .floating-label input:not(:placeholder-shown) + span,
+    .floating-label textarea:focus + span,
+    .floating-label textarea:not(:placeholder-shown) + span {
+      top: -0.5rem;
+      left: 0.5rem;
+      font-size: 0.75rem;
+      color: #007bff;
+    }
+
+    /* Submit button styles */
+    button[type="submit"] {
+      padding: 0.75rem 1.5rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: center;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* Feedback message styles */
+    #formFeedback {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 600px){
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <h1>Class System</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="login.html">Login</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2>Contact Us</h2>
+    <form id="contactForm" novalidate>
+      <label class="floating-label" for="name">
+        <input type="text" id="name" name="name" required minlength="2" placeholder=" " />
+        <span>Name</span>
+      </label>
+
+      <label class="floating-label" for="email">
+        <input type="email" id="email" name="email" required placeholder=" " />
+        <span>Email</span>
+      </label>
+
+      <label class="floating-label" for="message">
+        <textarea id="message" name="message" required minlength="10" rows="5" placeholder=" "></textarea>
+        <span>Message</span>
+      </label>
+
+      <button type="submit">Send Message</button>
+      <div id="formFeedback"></div>
+    </form>
+  </main>
+
+  <script>
+    // Basic form validation and submission feedback
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      const feedbackDiv = document.getElementById('formFeedback');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Simple validation check
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+        if (name.length < 2) {
+          feedbackDiv.textContent = 'Please enter a valid name.';
+          feedbackDiv.style.color = 'red';
+          return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+          feedbackDiv.textContent = 'Please enter a valid email address.';
+          feedbackDiv.style.color = 'red';
+          return;
+        }
+
+        if (message.length < 10) {
+          feedbackDiv.textContent = 'Please enter a message of at least 10 characters.';
+          feedbackDiv.style.color = 'red';
+          return;
+        }
+
+        // If valid, show success message (simulate submission)
+        feedbackDiv.textContent = 'Thank you for contacting us! We will get back to you shortly.';
+        feedbackDiv.style.color = 'green';
+
+        // Optionally, reset the form after a delay
+        setTimeout(() => {
+          form.reset();
+          feedbackDiv.textContent = '';
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>

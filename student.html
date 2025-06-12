@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | ClassSys</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f0f2f5;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+      scroll-behavior: smooth;
+    }
+
+    html[data-theme='dark'] body {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    /* Header Styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--primary-color, #4A90E2);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #555;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .nav-links a:hover, .nav-link-active {
+      color: var(--primary-color, #4A90E2);
+      transform: scale(1.05);
+    }
+
+    /* Container & Sections */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--primary-color, #4A90E2);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* Cards Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Card Styles */
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    .card p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* Buttons */
+    .cta-button {
+      background-color: var(--primary-color, #4A90E2);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .cta-button:hover {
+      background-color: #357ABD;
+      transform: scale(1.05);
+    }
+
+    /* Animations for fadeInUp (staggered) */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Delay for each card (for staggered effect) */
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+    .card:nth-child(4) { animation-delay: 0.8s; }
+    .card:nth-child(5) { animation-delay: 1s; }
+    .card:nth-child(6) { animation-delay: 1.2s; }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Header with Navigation -->
+  <header>
+    <div class="navbar">
+      <h1>ClassSys</h1>
+      <div class="nav-links">
+        <a href="index.html" id="navHome" class="nav-link">Home</a>
+        <a href="login.html" class="nav-link">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" id="student-dashboard">
+    <h2>Student Dashboard</h2>
+    <section class="grid">
+      <!-- Card 1: Attendance -->
+      <div class="card">
+        <i class="fas fa-user-check fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>Attendance Summary</h3>
+        <p>View your attendance percentages clearly and easily. Keep track of your attendance to stay on top of your academic commitments.</p>
+        <button class="cta-button" onclick="alert('Attendance details coming soon!')">View</button>
+      </div>
+      <!-- Card 2: Download Materials -->
+      <div class="card">
+        <i class="fas fa-file-download fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>Download Notes & Materials</h3>
+        <p>Access study materials uploaded by your teachers securely. Download notes, assignments, and resources anytime.</p>
+        <button class="cta-button" onclick="alert('Materials download interface coming soon!')">Open</button>
+      </div>
+      <!-- Card 3: Submit Assignments -->
+      <div class="card">
+        <i class="fas fa-upload fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>Submit Assignments</h3>
+        <p>Upload your assignments with deadlines and track your submissions easily. Stay organized and punctual.</p>
+        <button class="cta-button" onclick="alert('Assignment submission coming soon!')">Submit</button>
+      </div>
+      <!-- Card 4: View Timetable -->
+      <div class="card">
+        <i class="fas fa-calendar-alt fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>View Timetable</h3>
+        <p>Check your personalized class schedule with ease. Never miss a class or event with your updated timetable.</p>
+        <button class="cta-button" onclick="alert('Timetable view coming soon!')">View</button>
+      </div>
+      <!-- Card 5: Academic Progress -->
+      <div class="card">
+        <i class="fas fa-chart-line fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>Academic Progress</h3>
+        <p>Track your grades and academic performance over time. Stay motivated and identify areas for improvement.</p>
+        <button class="cta-button" onclick="alert('Progress analytics coming soon!')">View</button>
+      </div>
+      <!-- Card 6: Notifications & Announcements -->
+      <div class="card">
+        <i class="fas fa-bullhorn fa-2x" style="color: #4A90E2; margin-bottom: 1rem;"></i>
+        <h3>Notifications & Announcements</h3>
+        <p>Stay updated with the latest news, events, and announcements from your school and teachers.</p>
+        <button class="cta-button" onclick="alert('Notifications coming soon!')">Check</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Theme toggle script
+    const themeButton = document.getElementById('themeToggle');
+    themeButton.addEventListener('click', () => {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        themeButton.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeButton.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+
+    // Navigation active highlighting and smooth scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      const setActiveLink = (link) => {
+        navLinks.forEach(l => l.classList.remove('nav-link-active'));
+        link.classList.add('nav-link-active');
+      };
+
+      // Handle click on nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          if (targetId === 'index.html') {
+            // Navigate directly to index.html
+            window.location.href = 'index.html';
+          } else {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+          setActiveLink(link);
+        });
+      });
+
+      // Highlight link when scrolling
+      const sections = document.querySelectorAll('section, main');
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.6
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+            if (activeLink) {
+              setActiveLink(activeLink);
+            }
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+</body>
+</html>
